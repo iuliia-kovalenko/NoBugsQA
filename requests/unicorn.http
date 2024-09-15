@@ -1,5 +1,5 @@
 ### GET request to example server
-GET https://crudcrud.com/api/017bbdec41c24ac689e7e2402ad3a8f8/unicorn/66e5fa48fe837603e816c16a
+GET https://crudcrud.com/api/017bbdec41c24ac689e7e2402ad3a8f8/unicorn/66e73395fe837603e816c264
 ###
 
 POST https://crudcrud.com/api/017bbdec41c24ac689e7e2402ad3a8f8/unicorn

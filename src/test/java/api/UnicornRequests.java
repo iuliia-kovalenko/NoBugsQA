@@ -1,24 +1,26 @@
 package api;
 
-import io.restassured.RestAssured;
+import api.models.Unicorn;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.restassured.http.ContentType;
-import io.restassured.parsing.Parser;
+import io.restassured.mapper.ObjectMapperType;
 import org.apache.http.HttpStatus;
-
-import java.util.HashMap;
 
 import static io.restassured.RestAssured.given;
 
 public class UnicornRequests {
-    static {
-        RestAssured.defaultParser = Parser.JSON;
-    }
+    ObjectMapper objectMapper = new ObjectMapper();
 
-
-    public static HashMap<String, String> createUnicorn(String body) {
-        // Отправляем запрос и извлекаем ответ в виде HashMap
-        HashMap response = given()
-                .body(body)
+    public Unicorn createUnicorn(Unicorn unicorn) {
+        String unicornJson = null;
+        try {
+            unicornJson = objectMapper.writeValueAsString(unicorn);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+        return given()
+                .body(unicornJson)
                 .contentType(ContentType.JSON)
                 .post("/unicorn")
                 .then()
@@ -26,26 +28,14 @@ public class UnicornRequests {
                 .statusCode(201)
                 .extract()
                 .body()
-                .as(HashMap.class);
+                .as(Unicorn.class, ObjectMapperType.GSON);
 
-        // Извлекаем значения из HashMap
-        String id = (String) response.get("_id");
-        String tailColor = (String) response.get("tailColor");
-        String name = (String) response.get("name");
-
-        // Создаём новый HashMap для хранения нужных данных
-        HashMap<String, String> result = new HashMap<>();
-        result.put("name", name);
-        result.put("id", id);
-        result.put("tailColor", tailColor);
-
-        return result;
     }
 
 
-    public static HashMap<String, String> getUnicornById(String id) {
-        // Отправляем запрос и извлекаем ответ в виде HashMap
-        HashMap response = given()
+    public Unicorn getUnicornById(String id) {
+
+        return given()
                 .contentType(ContentType.JSON)
                 .get("/unicorn/" + id)
                 .then()
@@ -53,17 +43,8 @@ public class UnicornRequests {
                 .statusCode(200)
                 .extract()
                 .body()
-                .as(HashMap.class);
+                .as(Unicorn.class, ObjectMapperType.GSON);
 
-        // Извлекаем значения из HashMap
-        String tailColor = (String) response.get("tailColor");
-        String name = (String) response.get("name");
-
-        HashMap<String, String> result = new HashMap<>();
-        result.put("name", name);
-        result.put("tailColor", tailColor);
-
-        return result;
     }
 
     public static void deleteUnicorn(String id) {
@@ -74,18 +55,20 @@ public class UnicornRequests {
                 .statusCode(200);
     }
 
-    public static void updateUnicornTailColor(String id, String name, String newTailColor) {
-        HashMap<String, String> updateBody = new HashMap<>();
-        updateBody.put("name", name);
-        updateBody.put("tailColor", newTailColor);
-
-
+    public void updateUnicornTailColor(Unicorn unicorn) {
+        String unicornJson = null;
+        try {
+            unicornJson = objectMapper.writeValueAsString(unicorn);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
         given()
                 .contentType(ContentType.JSON)
-                .body(updateBody)
-                .put("/unicorn/" + id)
+                .body(unicornJson)
+                .put("/unicorn/" + unicorn.getId())
                 .then()
                 .assertThat()
                 .statusCode(HttpStatus.SC_OK);
+
     }
 }

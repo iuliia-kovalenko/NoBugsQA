@@ -1,4 +1,5 @@
 import api.StudentRequests;
+import api.models.Student;
 import io.restassured.RestAssured;
 import io.restassured.filter.log.RequestLoggingFilter;
 import io.restassured.filter.log.ResponseLoggingFilter;
@@ -12,35 +13,34 @@ public class SimpleTest {
     @BeforeAll
     public static void setUpTests() {
         RestAssured.filters(new RequestLoggingFilter(), new ResponseLoggingFilter());
-        RestAssured.baseURI = "https://crudcrud.com/api/fcc7b6cb2ea842d29e73bd7db3cfca7e";
+        RestAssured.baseURI = "https://crudcrud.com/api/017bbdec41c24ac689e7e2402ad3a8f8";
     }
 
     @Test
     public void userShouldBeAbleCreateStudent() {
 
-        StudentRequests.createStudent("{\n" +
-                "  \"name\" : \"Sasha Osipov\",\n" +
-                "  \"grade\": 10\n" +
-                "}");
+        Student student = Student.builder().name("Саша Осипов").grade(3).build();
+
+        StudentRequests studentRequests = new StudentRequests();
+        studentRequests.createStudent(student);
     }
 
     @Test
     public void userShouldBeAbleDeteleExistingStudent() {
 
         // Шаг 1 -Создание Студента
-        String id = StudentRequests.createStudent("{\n" +
-                "  \"name\" : \"Sasha Osipov\",\n" +
-                "  \"grade\": 10\n" +
-                "}");
 
+        Student student = Student.builder().name("Саша Осипов").grade(3).build();
+        StudentRequests studentRequests = new StudentRequests();
+        Student createdStudent = studentRequests.createStudent(student);
 
         // Шаг 2 - Удаление Студента
-        StudentRequests.deleteStudent(id);
+        studentRequests.deleteStudent(createdStudent.getId());
 
         // Шаг 3 -проверить, что студент больше не существует
 
         given()
-                .get("/student/" + id).
+                .get("/student/" + createdStudent.getId()).
                 then()
                 .assertThat()
                 .statusCode(HttpStatus.SC_NOT_FOUND);
