@@ -1,7 +1,20 @@
 package org.example;
 
-import org.example.task2.*;
-import org.example.task2hard.*;
+import org.example.homework.book.BookTask1;
+import org.example.homework.car.Car;
+import org.example.homework.clock.Clock;
+import org.example.homework.point.Point;
+import org.example.homework.student.StudentTask1;
+import org.example.homeworkHard.book.Book;
+import org.example.homeworkHard.book.BookCollection;
+import org.example.homeworkHard.musicLibrary.MusicLibrary;
+import org.example.homeworkHard.musicLibrary.MusicTrack;
+import org.example.homeworkHard.product.PriceList;
+import org.example.homeworkHard.product.Product;
+import org.example.homeworkHard.student.Student;
+import org.example.homeworkHard.student.StudentManager;
+import org.example.homeworkHard.task.Task;
+import org.example.homeworkHard.task.TaskManager;
 
 public class Main {
     public static void main(String[] args) {
@@ -81,7 +94,6 @@ public class Main {
         System.out.println("Задача про книги и уникальный набор книг");
         Book book1 = new Book("Small GODS", "Terry Pratchett");
         Book book2 = new Book("The Hitchhiker's Guide to the Galaxy", "Duglas Adams");
-        Book book3 = new Book("The Hitchhiker's Guide to the Galaxy", "Duglas Adams");
         BookCollection collection = new BookCollection();
         System.out.println("Добавили книги в набор: ");
         collection.addBook(book1);
