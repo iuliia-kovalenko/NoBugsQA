@@ -19,7 +19,7 @@ public class RegistrationFormTest {
 
 
     @Test
-    public void useCanNotCreateAccountWithFirstNameOnly() {
+    public void userCanNotCreateAccountWithFirstNameOnly() {
         // Подготовка страницы
         RegisterAccountPage registerAccountPage = new RegisterAccountPage();
         registerAccountPage.open();
@@ -44,7 +44,7 @@ public class RegistrationFormTest {
     }
 
     @Test
-    public void useCanNotCreateAccountWithLastNameOnly() {
+    public void userCanNotCreateAccountWithLastNameOnly() {
         // Подготовка страницы
         RegisterAccountPage registerAccountPage = new RegisterAccountPage();
         registerAccountPage.open();
@@ -69,7 +69,7 @@ public class RegistrationFormTest {
     }
 
     @Test
-    public void useCanNotCreateAccountWithNameAndSurnameOnly() {
+    public void userCanNotCreateAccountWithNameAndSurnameOnly() {
         // Подготовка страницы
         RegisterAccountPage registerAccountPage = new RegisterAccountPage();
         registerAccountPage.open();
@@ -95,7 +95,7 @@ public class RegistrationFormTest {
     }
 
     @Test
-    public void useCanNotCreateAccountWithAddressOnly() {
+    public void userCanNotCreateAccountWithAddressOnly() {
         // Подготовка страницы
         RegisterAccountPage registerAccountPage = new RegisterAccountPage();
         registerAccountPage.open();
@@ -120,7 +120,7 @@ public class RegistrationFormTest {
     }
 
     @Test
-    public void useCanNotCreateAccountWithCityOnly() {
+    public void userCanNotCreateAccountWithCityOnly() {
         // Подготовка страницы
         RegisterAccountPage registerAccountPage = new RegisterAccountPage();
         registerAccountPage.open();
@@ -145,7 +145,7 @@ public class RegistrationFormTest {
     }
 
     @Test
-    public void useCanNotCreateAccountWithStateOnly() {
+    public void userCanNotCreateAccountWithStateOnly() {
         // Подготовка страницы
         RegisterAccountPage registerAccountPage = new RegisterAccountPage();
         registerAccountPage.open();
@@ -170,7 +170,7 @@ public class RegistrationFormTest {
     }
 
     @Test
-    public void useCanNotCreateAccountWithZipCodeOnly() {
+    public void userCanNotCreateAccountWithZipCodeOnly() {
         // Подготовка страницы
         RegisterAccountPage registerAccountPage = new RegisterAccountPage();
         registerAccountPage.open();
@@ -195,7 +195,7 @@ public class RegistrationFormTest {
     }
 
     @Test
-    public void useCanNotCreateAccountWithSsnOnly() {
+    public void userCanNotCreateAccountWithSsnOnly() {
         // Подготовка страницы
         RegisterAccountPage registerAccountPage = new RegisterAccountPage();
         registerAccountPage.open();
@@ -220,7 +220,7 @@ public class RegistrationFormTest {
     }
 
     @Test
-    public void useCanNotCreateAccountWithUserNameOnly() {
+    public void userCanNotCreateAccountWithUserNameOnly() {
         // Подготовка страницы
         RegisterAccountPage registerAccountPage = new RegisterAccountPage();
         registerAccountPage.open();
@@ -245,7 +245,7 @@ public class RegistrationFormTest {
     }
 
     @Test
-    public void useCanNotCreateAccountWithUserPasswordOnly() {
+    public void userCanNotCreateAccountWithUserPasswordOnly() {
         // Подготовка страницы
         RegisterAccountPage registerAccountPage = new RegisterAccountPage();
         registerAccountPage.open();
@@ -270,7 +270,7 @@ public class RegistrationFormTest {
     }
 
     @Test
-    public void useCanNotCreateAccountWithUserConfirmPasswordOnly() {
+    public void userCanNotCreateAccountWithUserConfirmPasswordOnly() {
         // Подготовка страницы
         RegisterAccountPage registerAccountPage = new RegisterAccountPage();
         registerAccountPage.open();
@@ -295,7 +295,7 @@ public class RegistrationFormTest {
     }
 
     @Test
-    public void successfulRegistration() {
+    public void userSuccessfulRegistration() {
         // Подготовка страницы
         RegisterAccountPage registerAccountPage = new RegisterAccountPage();
         registerAccountPage.open();
